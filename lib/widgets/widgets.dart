@@ -73,7 +73,7 @@ class _MedicineEditState extends State<MedicineEdit> {
 
 
 //home page medicin view
-Widget MedicinWidget(BuildContext context){
+Widget medicinWidget(BuildContext context){
   return                     Padding(//copy
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       child: Container(
@@ -154,4 +154,28 @@ Widget MedicinWidget(BuildContext context){
                         ),
                       ),
                     );
+}
+//button widget
+Widget customButton(String name, double height, double width){
+  return Container(
+    width: width,
+    height: height,
+    decoration: BoxDecoration(
+      boxShadow: [new BoxShadow(
+                            color: Colors.black45,
+                            blurRadius: 4.0,
+                            offset: Offset(0,4)
+                          ),
+
+      ],
+      borderRadius: BorderRadius.circular(30),
+      color: HexColor("FFA1A1")
+    ),
+    child: Align(
+      alignment: Alignment.center,
+          child: Text(name, style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 20, color: Colors.white,
+      ))),
+    ),
+
+  );
 }

@@ -138,13 +138,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           scrollDirection:Axis.vertical ,
                           children: medicineData.map((medicine) {//creating each widget for each elements in list 
                           //list name is medicine data which is a 
-                          return MedicinWidget(context);
+                          return medicinWidget(context);
                           }).toList(),//converting to list
                         ),
 
                       ),
                     )
                   ],
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      customButton("+add", 60, 175),
+                      customButton("view medicines", 60, 200),
+
+                    ],
+                  ),
                 ),
               )
                   ])
