@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:take_it/Screens/homeScreen.dart';
+import 'package:take_it/Screens/showMedicinpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,8 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: ShowMedicinepage(),
     );
   }
 }
-
