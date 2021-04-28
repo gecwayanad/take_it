@@ -63,6 +63,32 @@ class _MedicineEditState extends State<MedicineEdit> {
 }
 
 
+class Timelist extends StatelessWidget {
+  String time;
+  Timelist({this.time});
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 20,
+        ),
+        Text(this.time),
+        SizedBox(
+          width: 170,
+        ),
+        IconButton(
+            icon: Icon(
+              Icons.close,
+              size: 20,
+            ),
+            onPressed: () {})
+      ],
+    );
+  }
+}
+
+
 
 
 
@@ -179,3 +205,4 @@ Widget customButton(String name, double height, double width){
 
   );
 }
+
