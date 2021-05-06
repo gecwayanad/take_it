@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:take_it/widgets/widgets.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:take_it/widgets/functions.dart';
 
 class AddMedicine extends StatefulWidget {
   @override
@@ -7,8 +11,23 @@ class AddMedicine extends StatefulWidget {
 }
 
 class _AddMedicineState extends State<AddMedicine> {
+  TextEditingController medicineNameContoller = TextEditingController();
   String dropdownValue = 'AM';
   String dropdownValue1 = 'Befor Food';
+  final _picker = ImagePicker();
+  PickedFile _medicineImage;
+  Map<int, File> medicineimagemap = {};
+
+  Future getImage() async {
+    final PickedFile _image =
+        await _picker.getImage(source: ImageSource.camera);
+    _medicineImage = _image;
+    setState(() {
+      if (_image != null) {
+        medicineimagemap[1] = File(_image.path);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +76,18 @@ class _AddMedicineState extends State<AddMedicine> {
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 20),
-                            child: IconButton(
-                              icon: Icon(Icons.camera_alt),
-                              iconSize: 40,
-                              onPressed: () {},
-                            ))),
+                            child: _medicineImage == null
+                                ? IconButton(
+                                    icon: Icon(Icons.camera_alt),
+                                    iconSize: 40,
+                                    onPressed: getImage,
+                                  )
+                                : CircleAvatar(
+                                    child: Image.file(
+                                      medicineimagemap[1],
+                                    ),
+                                    radius: 25,
+                                  ))),
                     Container(
                         width: 300,
                         child: TextField(
@@ -201,7 +227,14 @@ class _AddMedicineState extends State<AddMedicine> {
         floatingActionButton: Align(
           alignment: Alignment.bottomCenter,
           child: FloatingActionButton.extended(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                Utility.SaveImg(
+                    medicineNameContoller.text,
+                    Utility.base64String(
+                        File(_medicineImage.path).readAsBytesSync()));
+              });
+            },
             backgroundColor: Colors.red[300],
             label: Text('Add'),
           ),
