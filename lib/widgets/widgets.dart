@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:take_it/Screens/homeScreen.dart';
+import 'package:take_it/models/medicine_info.dart';
 import 'package:take_it/data.dart';
 
-class MedicineEdit extends StatefulWidget {
-  String medicinename;
+Widget editMedicine(String medicineName, String time, bool check){
 
-  MedicineEdit({this.medicinename}); //constructor
-  @override
-  _MedicineEditState createState() => _MedicineEditState();
-}
-
-class _MedicineEditState extends State<MedicineEdit> {
-  bool check = true;
-  @override
-  Widget build(BuildContext context) {
-    return Align(
+   return Align(
         alignment: Alignment.center,
         child: Column(
           children: [
@@ -27,30 +19,28 @@ class _MedicineEditState extends State<MedicineEdit> {
               height: 80,
               width: 350,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  TextButton(
-                      //text button name to go back to its edit screen
-                      onPressed: () {},
-                      child: Text(
-                        widget.medicinename,
+
+                  Text(
+                        medicineName,
                         style: TextStyle(fontSize: 20, color: Colors.white),
-                      )),
-                  SizedBox(
-                    width: 130,
-                  ),
-                  Checkbox(
-                    //checkbox
-                    value: check,
-                    activeColor: Colors.red[200],
-                    onChanged: (bool value) {
-                      setState(() {
-                        check = value;
-                      });
-                    },
-                  ),
+                      ),
+                      Text(
+                        time,
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: ElevatedButton(onPressed: (){
+                          removeData(medicineName,time );
+
+
+
+                        },
+                         child: Text("delete")),
+                      )
+
                 ],
               ),
             ),
@@ -59,7 +49,6 @@ class _MedicineEditState extends State<MedicineEdit> {
             )
           ],
         ));
-  }
 }
 
 
@@ -99,7 +88,7 @@ class Timelist extends StatelessWidget {
 
 
 //home page medicin view
-Widget medicinWidget(BuildContext context){
+Widget medicinWidget(String medicineName, String time){
   return                     Padding(//copy
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       child: Container(
@@ -121,7 +110,7 @@ Widget medicinWidget(BuildContext context){
                               padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
                               child: Align(
                                 alignment:Alignment.centerLeft,
-                                                            child: Text("#medicine1", 
+                                                            child: Text(medicineName, 
                                 style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -142,7 +131,7 @@ Widget medicinWidget(BuildContext context){
                                     
                                     Row(
                                     children: [
-                                    Text("5:30",
+                                    Text(time,
                                      style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -182,7 +171,7 @@ Widget medicinWidget(BuildContext context){
                     );
 }
 //button widget
-Widget customButton(String name, double height, double width){
+Widget customButton(String name, double height, double width, double fontsize){
   return Container(
     width: width,
     height: height,
@@ -199,7 +188,7 @@ Widget customButton(String name, double height, double width){
     ),
     child: Align(
       alignment: Alignment.center,
-          child: Text(name, style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 20, color: Colors.white,
+          child: Text(name, style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: fontsize, color: Colors.white,
       ))),
     ),
 

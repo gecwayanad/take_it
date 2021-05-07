@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:take_it/Screens/addMedicinPage.dart';
+import 'package:take_it/Screens/showMedicinpage.dart';
 import 'package:take_it/data.dart';
+import 'package:take_it/models/listViewData.dart';
+import 'package:take_it/models/medicine_info.dart';
 import 'package:take_it/widgets/widgets.dart';
 
 
@@ -12,10 +17,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
+  @override
+  void initState() {
+    
+    
+    super.initState();
+    
+    
+
+    
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
      double _widthofdiv = MediaQuery.of(context).size.width;
+
+         
     return  Scaffold(
         body: Stack(
                   children:[ Container(
@@ -132,14 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),]
                                       )),
                     ),
-                    Container(//container for list view
+                    Container(
+                      //container for list view
                       child: Expanded(//expanded list view
                         child: ListView(
                           scrollDirection:Axis.vertical ,
-                          children: medicineData.map((medicine) {//creating each widget for each elements in list 
-                          //list name is medicine data which is a 
-                          return medicinWidget(context);
-                          }).toList(),//converting to list
+                          children: showShedule ,//converting to list
                         ),
 
                       ),
@@ -154,8 +172,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      customButton("+add", 60, 175),
-                      customButton("view medicines", 60, 200),
+                      GestureDetector(
+                        onTap: (){
+                          updatesScrollData();
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => AddMedicine() ));
+                        },
+                        child: customButton("+add", 60, 175, 20)),
+                      GestureDetector(
+                        onTap: (){
+                          // print(medicineNamesData);
+                          // retriveAlarm();
+                          // final uniqueData = allMedicineData.toSet().toList();//not working to remove identical sets
+                          // print("uniqueData: $uniqueData");
+                          updatesScrollData();
+                          
+
+                          
+
+
+
+
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => ShowMedicinepage()));
+                        },
+                        child: customButton("view medicines", 60, 200, 20)),
 
                     ],
                   ),

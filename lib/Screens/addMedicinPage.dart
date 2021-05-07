@@ -1,4 +1,15 @@
+// backend on progress
+
+
+
+
+
+
+
 import 'package:flutter/material.dart';
+import 'package:take_it/Screens/homeScreen.dart';
+import 'package:take_it/data.dart';
+import 'package:take_it/models/medicine_info.dart';
 import 'package:take_it/widgets/widgets.dart';
 
 class AddMedicine extends StatefulWidget {
@@ -9,6 +20,13 @@ class AddMedicine extends StatefulWidget {
 class _AddMedicineState extends State<AddMedicine> {
   String dropdownValue = 'AM';
   String dropdownValue1 = 'Befor Food';
+  String textfieldData;
+
+
+  //controllers
+  TextEditingController medicineNameContoller = TextEditingController();
+  TextEditingController timeContoller = TextEditingController();
+  TextEditingController amOrPmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +50,9 @@ class _AddMedicineState extends State<AddMedicine> {
                       Icons.arrow_back_ios,
                       size: 20,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => HomeScreen()));
+                    }),
               ),
               //first main container
               Container(
@@ -65,6 +85,7 @@ class _AddMedicineState extends State<AddMedicine> {
                     Container(
                         width: 300,
                         child: TextField(
+                          controller: medicineNameContoller,
                           decoration: InputDecoration(
                               labelText: 'Name of the medicine',
                               border: OutlineInputBorder(
@@ -142,7 +163,13 @@ class _AddMedicineState extends State<AddMedicine> {
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ))),
-                          onPressed: () {},
+                          onPressed: () {
+                            
+
+
+                            
+
+                          },
                         )
                       ],
                     ),
@@ -201,7 +228,47 @@ class _AddMedicineState extends State<AddMedicine> {
         floatingActionButton: Align(
           alignment: Alignment.bottomCenter,
           child: FloatingActionButton.extended(
-            onPressed: () {},
+
+
+
+            onPressed: () {
+              //onpressed final add button im going to take medicine name form field and also the time,
+              //and pssing that value to add alarm()[origin in medicineInfo.dart]
+              
+
+
+              textfieldData = medicineNameContoller.text;//taking medicines name from textfield using controller
+
+
+              if (textfieldData != ''){//checking medicine name is not null
+                medicineNamesData.add(textfieldData);
+                //adding the medicine data into shared preferences
+                addAlarm(alarmTimes, medicineNameContoller.text);
+                print(medicineNamesData);
+              
+              }
+              else{
+                print('field is null');
+              }
+
+
+
+
+              //adding times into a list called 
+              // alarmTimes.add(timeList);
+              // will added in future currently i aldready defined it
+              
+              //adding medicine name to a list so it can be called in HomeScreen()
+
+
+
+
+              //
+
+            },
+
+
+
             backgroundColor: Colors.red[300],
             label: Text('Add'),
           ),
