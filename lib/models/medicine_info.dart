@@ -7,16 +7,11 @@ import 'package:take_it/widgets/widgets.dart';
 import 'package:take_it/Screens/homeScreen.dart';
 import 'package:take_it/Screens/showMedicinpage.dart';
 
+class MedicineInfo {
+  DateTime medicineDateTime;
+  String medicineName;
 
-
-
-
-class MedicineInfo{
-DateTime medicineDateTime;
-String medicineName;
-
-MedicineInfo(this.medicineDateTime, this.medicineName);
-
+  MedicineInfo(this.medicineDateTime, this.medicineName);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -50,103 +45,70 @@ MedicineInfo(this.medicineDateTime, this.medicineName);
 //
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-addAlarm(List time, String medicineName)async{
-
+addAlarm(List time, String medicineName) async {
   SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
 
+  medicineNamesData.forEach((element) {
+    //for each elements in  medicine names making set of {medicine , time}
 
-
-  medicineNamesData.forEach((element){ //for each elements in  medicine names making set of {medicine , time}
-      
-
-  List intermediate = time;
-  intermediate.forEach((element2) {
-    allMedicineData.add({'$medicineName', '$element2'});
-
-
-
-
+    List intermediate = time;
+    intermediate.forEach((element2) {
+      allMedicineData.add({'$medicineName', '$element2'});
+    });
   });
-  
-
-  
-});
 //-------------------------------------------------------------------------
 
 //removing identical
 
-allMedicineData.forEach((element){
-    
-transformString.add(element.toString());
-    
-});
-allMedicineData = transformString.toSet().toList();//removed identical sets
+  allMedicineData.forEach((element) {
+    transformString.add(element.toString());
+  });
+  allMedicineData = transformString.toSet().toList(); //removed identical sets
 // print(allMedicineData);
 
 //-------------------------------------------------------------------------
 
-List<String> convertedMedicineData = allMedicineData.map((s) => s as String).toList();//converting in to list string
+  List<String> convertedMedicineData = allMedicineData
+      .map((s) => s as String)
+      .toList(); //converting in to list string
 
 //-------------------------------------------------------------------------
-
-
-
-
-
-
-
 
 //checking weather their is a previous stored data in shared preference or not
 
-if(saveAllmedicineData.getStringList("medicine") != null ){
+  if (saveAllmedicineData.getStringList("medicine") != null) {
+    List tempMedicineData = saveAllmedicineData.getStringList("medicine");
+    saveAllmedicineData.remove("medicine");
+    tempMedicineData = tempMedicineData + convertedMedicineData;
+    // print(tempMedicineData);
 
-
-  List tempMedicineData = saveAllmedicineData.getStringList("medicine");
-  saveAllmedicineData.remove("medicine");
-  tempMedicineData = tempMedicineData + convertedMedicineData;
-  // print(tempMedicineData);
-
-  //for duplicate
-  tempMedicineData.forEach((element){
-    
-transformStringinsideif.add(element.toString());
-    
-});
-tempMedicineData = transformStringinsideif.toSet().toList();//removed identical sets
+    //for duplicate
+    tempMedicineData.forEach((element) {
+      transformStringinsideif.add(element.toString());
+    });
+    tempMedicineData =
+        transformStringinsideif.toSet().toList(); //removed identical sets
 // print(allMedicineData);
 //-------------------------------------------------------------------------
 
-List<String> secondconvertedMedicineData = tempMedicineData.map((s) => s as String).toList();
+    List<String> secondconvertedMedicineData =
+        tempMedicineData.map((s) => s as String).toList();
 
 //-------------------------------------------------------------------------
 
-
-
-
-  try {
-    saveAllmedicineData.setStringList("medicine", secondconvertedMedicineData);
-    
-  } catch (e) {
-    print(e);
+    try {
+      saveAllmedicineData.setStringList(
+          "medicine", secondconvertedMedicineData);
+    } catch (e) {
+      print(e);
+    }
+    print(saveAllmedicineData.getStringList("medicine"));
+  } else {
+    saveAllmedicineData.setStringList(
+        "medicine", convertedMedicineData); //else condition
+    print(saveAllmedicineData.getStringList("medicine"));
   }
-  print(saveAllmedicineData.getStringList("medicine"));
-
 }
-else{
-  saveAllmedicineData.setStringList("medicine", convertedMedicineData);//else condition
-  print(saveAllmedicineData.getStringList("medicine"));
-
-}
-
-
-
-
-
-}
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //                                                  UPDATESCROLLDATA FUNCTION HERE
@@ -158,42 +120,37 @@ else{
 
 //updating home Screen shedule
 
-
-updatesScrollData() async{
+updatesScrollData() async {
   List<Widget> homeScreenScrollWidget = [];
-  List<Widget> showSheduleShowMedicine =  [];
+  List<Widget> showSheduleShowMedicine = [];
   // List<Widget> showSheduleShowMedicineperfect = [];
   SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
+  final SharedPreferences storage = await SharedPreferences.getInstance();
+  final alldataImage = saveAllmedicineData.getStringList("medname");
+  print(alldataImage);
+
   final alldata = saveAllmedicineData.getStringList("medicine");
   print(alldata);
-  final output  = [alldata.map(parseSetString)];
+  final output = [alldata.map(parseSetString)];
   medicineElement = output;
 
+  for (int i = 0; i < output[0].length; i++) {
+    final outElement = output[0].elementAt(i);
+    // print(outElement.elementAt(0));
+    homeScreenScrollWidget
+        .add(medicinWidget(outElement.elementAt(0), outElement.elementAt(1)));
 
-  for(int i = 0; i < output[0].length; i++){
-        final outElement = output[0].elementAt(i);
-        // print(outElement.elementAt(0));
-        homeScreenScrollWidget.add(medicinWidget(outElement.elementAt(0), outElement.elementAt(1)));
+    showShedule = homeScreenScrollWidget;
 
-        showShedule = homeScreenScrollWidget;
+    showSheduleShowMedicine.add(
+        editMedicine(outElement.elementAt(0), outElement.elementAt(1), false));
 
-        showSheduleShowMedicine.add(editMedicine(outElement.elementAt(0), outElement.elementAt(1), false) );
-        
-        showSheduleShowMedicineperfect = showSheduleShowMedicine;     
+    showSheduleShowMedicineperfect = showSheduleShowMedicine;
   }
   print(showShedule);
-
 }
 
-
-
-
-
-
-
-
-
-removeData(String name, String time)async{
+removeData(String name, String time) async {
   String combineData = "{$name, $time}";
   SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
   final localremoveData = saveAllmedicineData.getStringList("medicine");
@@ -203,11 +160,6 @@ removeData(String name, String time)async{
   saveAllmedicineData.setStringList("medicine", localremoveData);
   final secData = saveAllmedicineData.getStringList("medicine");
   print("data in preference $secData");
-
 }
 
-data(){
-  
-}
-
-
+data() {}
