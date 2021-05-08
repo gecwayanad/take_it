@@ -2,7 +2,7 @@
 
 A alarm application that going to be very usefull for peoples which are aged or differently abled <br>
 through this application you can set alarm for your medication
-set alarm take a picture of that medicine (if the patient cant read, or memmory issue) <br>
+set alarm take a picture of that medicine (if the patient cant read, or memory issue) <br>
 then just save the alarm. thats enough!!!<br>
 
 ## user features
