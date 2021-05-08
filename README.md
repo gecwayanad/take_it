@@ -11,12 +11,9 @@ then just save the alarm. thats enough!!!
 2.set alarm
 
 
-#watch video
+## watch video
 
-#download file
+## Download application
 
-#for android
-
-#for ios
-
-
+### >for android
+  download   [click Here](https://drive.google.com/file/d/1938GUXvymkpp1ahqirSjLNZPWdI6_n3W/view?usp=sharing)
