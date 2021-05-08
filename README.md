@@ -1,16 +1,22 @@
-# take_it
+# take it
 
-A new Flutter project.
+A alarm application that going to be very usefull for peoples which are aged or differently abled <br>
+through this application you can set alarm for your medication
+set alarm take a picture of that medicine (if the patient cant read, or memmory issue) <br>
+then just save the alarm. thats enough!!!
 
-## Getting Started
+## user features
 
-This project is a starting point for a Flutter application.
+1.save a photo of medicine.
+2.set alarm
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#watch video
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#download file
+
+#for android
+
+#for ios
+
+
