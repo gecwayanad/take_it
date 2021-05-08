@@ -17,4 +17,4 @@ then just save the alarm. thats enough!!!<br>
 ## Download application
 
 ### >for android
-  download(Version 0.0.1)   [click Here](https://drive.google.com/file/d/1938GUXvymkpp1ahqirSjLNZPWdI6_n3W/view?usp=sharing)
+  download(Version 0.0.1)   [click Here](https://drive.google.com/drive/u/0/folders/1eTUHeLXoTtyBLI2bBferJ7gIAcmfcSc1)
