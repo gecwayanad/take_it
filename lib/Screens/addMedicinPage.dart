@@ -80,6 +80,7 @@ class _AddMedicineState extends State<AddMedicine> {
                       size: 20,
                     ),
                     onPressed: () {
+                      alarmTimes = [];
                       updatesScrollData();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => HomeScreen()));
                     }),
