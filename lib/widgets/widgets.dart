@@ -57,22 +57,27 @@ class Timelist extends StatelessWidget {
   Timelist({this.time});
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 20,
-        ),
-        Text(this.time),
-        SizedBox(
-          width: 170,
-        ),
-        IconButton(
-            icon: Icon(
-              Icons.close,
-              size: 20,
+    return Expanded(
+          child: Container(
+        
+        child: Row(
+          children: [
+            SizedBox(
+              width: 20,
             ),
-            onPressed: () {})
-      ],
+            Text(this.time),
+            SizedBox(
+              width: 170,
+            ),
+            IconButton(
+                icon: Icon(
+                  Icons.close,
+                  size: 20,
+                ),
+                onPressed: () {})
+          ],
+        ),
+      ),
     );
   }
 }
@@ -90,12 +95,12 @@ class Timelist extends StatelessWidget {
 //home page medicin view
 Widget medicinWidget(String medicineName, String time){
   return                     Padding(//copy
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
                       child: Container(
-                        height: 175,
+                        height: 130,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: HexColor("FFB8B8"),
+                          color: HexColor("FFA1A1"),
                            boxShadow: [new BoxShadow(
                             color: Colors.black45,
                             blurRadius: 4.0,
@@ -103,27 +108,33 @@ Widget medicinWidget(String medicineName, String time){
                           ),]
                         ),
                         //container for upconing medicin
-                        child: Column(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           //column inside upcoming medicin container
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                              child: Align(
-                                alignment:Alignment.centerLeft,
-                                                            child: Text(medicineName, 
-                                style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                shadows: [new BoxShadow(
-                                      color: Colors.black45,
-                                      blurRadius: 4.0,
-                                      offset: Offset(0,4)
-                                    ),]
-                                )),
+                            
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                                  child: Align(
+                                    alignment:Alignment.centerLeft,
+                                                                child: Text(medicineName, 
+                                    style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    shadows: [new BoxShadow(
+                                          color: Colors.black45,
+                                          blurRadius: 4.0,
+                                          offset: Offset(0,4)
+                                        ),]
+                                    )),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
+                                                                                          Padding(
                               padding: EdgeInsets.fromLTRB(20, 20, 10, 0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,22 +164,37 @@ Widget medicinWidget(String medicineName, String time){
                                           ),]
                                       )),                                   
                                     )
-                                  ],
-                                  ),
-                                  Container(
-                                    width: 100,
-                                    height: 100,
-                                    color: Colors.white,
-                                  )
-                                  ]
-                              ),
-                            ),
+                      ]),
                             
                           
-                          ],
-                        ),
+                          
+                                  ]),
                       ),
-                    );
+                              
+                            
+
+                                  
+                                  
+
+                              ]),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 15),
+                                    child: Container(
+                                      
+                                      decoration: BoxDecoration(
+                                        
+                                        
+                                        color: HexColor("FFB8B8"),
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      width: 100,
+                                      height: 100,
+                                      
+                                    ),
+                                  )
+                                  
+
+                          ])));
 }
 //button widget
 Widget customButton(String name, double height, double width, double fontsize){

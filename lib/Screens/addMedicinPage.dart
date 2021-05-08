@@ -22,6 +22,7 @@ class AddMedicine extends StatefulWidget {
 }
 
 class _AddMedicineState extends State<AddMedicine> {
+  
   TextEditingController medicineNameContoller = TextEditingController();
   String dropdownValue = 'AM';
   String dropdownValue1 = 'Befor Food';
@@ -30,6 +31,8 @@ class _AddMedicineState extends State<AddMedicine> {
 
   //controllers
   // TextEditingController medicineNameContoller = TextEditingController();
+  TextEditingController hours = TextEditingController();
+  TextEditingController mins = TextEditingController();
   TextEditingController timeContoller = TextEditingController();
   TextEditingController amOrPmController = TextEditingController();
   final _picker = ImagePicker();
@@ -45,6 +48,13 @@ class _AddMedicineState extends State<AddMedicine> {
         medicineimagemap[1] = File(_image.path);
       }
     });
+  }
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -70,6 +80,7 @@ class _AddMedicineState extends State<AddMedicine> {
                       size: 20,
                     ),
                     onPressed: () {
+                      updatesScrollData();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => HomeScreen()));
                     }),
               ),
@@ -135,6 +146,7 @@ class _AddMedicineState extends State<AddMedicine> {
                         Container(
                             width: 75,
                             child: TextField(
+                              controller: hours,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                   labelText: 'Hrs',
@@ -150,6 +162,7 @@ class _AddMedicineState extends State<AddMedicine> {
                         Container(
                             width: 75,
                             child: TextField(
+                              controller: mins,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                   labelText: 'Min',
@@ -190,7 +203,11 @@ class _AddMedicineState extends State<AddMedicine> {
                                 borderRadius: BorderRadius.circular(30),
                               ))),
                           onPressed: () {
-                            
+                            //on oressed add the list shoul updated to timelist
+
+                              final finalhour = hours.text;
+                              final finalsec = mins.text;
+                              alarmTimes.add("$finalhour:$finalsec");
 
 
                             
@@ -204,13 +221,8 @@ class _AddMedicineState extends State<AddMedicine> {
                     ),
                     //2nd container list
                     Container(
-                      child: ListView(
-                        children: [
-                          Timelist(
-                            time: '7:30 PM',
-                          )
-                        ],
-                      ),
+                      child:Text("fjhiu")
+                      ,
                       decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(

@@ -169,7 +169,7 @@ updatesScrollData() async{
   final output  = [alldata.map(parseSetString)];
   medicineElement = output;
 
-  // updateScrollWidget();
+
   for(int i = 0; i < output[0].length; i++){
         final outElement = output[0].elementAt(i);
         // print(outElement.elementAt(0));
@@ -182,9 +182,7 @@ updatesScrollData() async{
         showSheduleShowMedicineperfect = showSheduleShowMedicine;     
   }
   print(showShedule);
-  return showShedule;
-  return showSheduleShowMedicineperfect;
-  return showSheduleShowMedicine;
+
 }
 
 
@@ -206,6 +204,10 @@ removeData(String name, String time)async{
   final secData = saveAllmedicineData.getStringList("medicine");
   print("data in preference $secData");
 
+}
+
+data(){
+  
 }
 
 
