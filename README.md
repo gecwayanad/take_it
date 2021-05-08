@@ -1,4 +1,4 @@
-# take it
+# TAKE IT
 
 A alarm application that going to be very usefull for peoples which are aged or differently abled <br>
 through this application you can set alarm for your medication
