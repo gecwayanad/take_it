@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take_it/Screens/homeScreen.dart';
+import 'package:take_it/models/medicine_info.dart';
 import 'package:take_it/widgets/widgets.dart';
 import 'package:take_it/data.dart';
 
@@ -38,7 +39,14 @@ class _ShowMedicinepageState extends State<ShowMedicinepage> {
                                   Icons.arrow_back_ios,
                                   size: 20,
                                 ),
-                                onPressed: () {
+                                onPressed: () async {
+                                  updatesScrollData();
+                                  SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
+
+                                  bool isittruthhhhome = saveAllmedicineData.getStringList("medicine").isEmpty;
+                                  if(isittruthhhhome == true){
+                                      showShedule = [];
+                                    }
                                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => HomeScreen()));
                                 }),
                           )),
@@ -47,9 +55,9 @@ class _ShowMedicinepageState extends State<ShowMedicinepage> {
                   Container(
                     height:MediaQuery.of(context).size.height -100,
                     child: ListView(
-                      scrollDirection:Axis.vertical,
-                      children:showSheduleShowMedicineperfect,
-                    ),
+                        scrollDirection:Axis.vertical,
+                        children:showSheduleShowMedicineperfect,
+                      ),
                   )
             ],
           ),
@@ -58,15 +66,22 @@ class _ShowMedicinepageState extends State<ShowMedicinepage> {
         floatingActionButton: Align(
           alignment: Alignment.bottomCenter,
           child: FloatingActionButton.extended(
-            onPressed: () {
+            onPressed: () async{
 
-              Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => super.widget));
+                        updatesScrollData();
+                        SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
+                        bool isittruthhhh = saveAllmedicineData.getStringList("medicine").isEmpty;
+                        if(isittruthhhh == true){
+                          showSheduleShowMedicineperfect = [];
+                        }
+
+                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
             },
             label: Text(
-              'Delet medicine',
+              'Refresh',
               textAlign: TextAlign.center,
             ),
             backgroundColor: Colors.red[300],

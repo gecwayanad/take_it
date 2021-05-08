@@ -7,7 +7,7 @@ List medicineNamesData = [ //medicine names stored here!! always updated from sh
 
 
 List<String> alarmTimes = [//temperary alarm time will be removed in future
-  "5:30", "9:00"
+  
 ];
 
 
@@ -27,6 +27,9 @@ Set<String> parseSetString(String setString) => setString
     .map((part) => part.substring(0, part.length ))
     .toSet();
 
+Set<String> parseSetStringdevided(String setString ) => setString
+    .split(':')
+    .toSet();
 
 List<Iterable<Set<String>>> medicineElement = [];
 
@@ -37,3 +40,13 @@ List<Widget> showSheduleShowMedicine = [];
 List<Widget> showSheduleShowMedicineperfect = [];
 
 List localremoveData = [];
+
+List timeList = [];
+
+List<Widget> onscreenloadHome = [];
+
+
+List<String> homeScreenupdateWidget = []; 
+
+Map upcomingMap = new Map();
+

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -18,24 +20,69 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   
-  @override
-  void initState() {
+  // String upcomingName;
+  // String upcomingTime;
+  // bool fact = false;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   upcomingMedicine();
     
-    
-    super.initState();
-    
-    
+  // }
+  // upcomingMedicine()async{
+  // upcomingTime = 'paracetamol';
+  // SharedPreferences saveAllmedicineData = await SharedPreferences.getInstance();
+  // final allrecData = saveAllmedicineData.getStringList("medicine");
+  // print(allrecData);
+  // final recoutput  = [allrecData.map(parseSetString)];
+  
 
-    
-  }
+  // for(int i = 0; i < recoutput[0].length; i++){
+  //       final outElementUpcoming = recoutput[0].elementAt(i);
+  //       // print(outElement.elementAt(0));
+         
+  //       //  homeScreenupdateWidget.add(medicinWidget(outElement.elementAt(0), outElement.elementAt(1)));
 
+  //       // showShedule = homeScreenupdateWidget;
+
+  //       // showSheduleShowMedicine.add(editMedicine(outElement.elementAt(0), outElement.elementAt(1), false) );
+        
+  //       // showSheduleShowMedicineperfect = showSheduleShowMedicine; 
+           
+  //          var time = outElementUpcoming.elementAt(1);
+  //          var name = outElementUpcoming.elementAt(0);
+           
+           
+  //          upcomingMap['$time'] = '$name';
+
+  // }
+  // print(upcomingMap);
+  // upcomingMap.forEach((key, value) { 
+    
+  //   List updatedupcomingint;
+  //   List<String> updatedupcoming;
+  //   List updatedUpcomingPreprossed;
+  //   // updatedupcomingint.add(int.parse(value));
+  //   updatedUpcomingPreprossed = [updatedupcoming.map(parseSetStringdevided)];
+    
+  //   print(updatedUpcomingPreprossed);
+  //   // setState(() {
+  //   //   upcomingName = updatedupcoming.
+  //   // });dfsdfsd
+  // }); 
+
+
+  // }
 
 
   @override
   Widget build(BuildContext context) {
      double _widthofdiv = MediaQuery.of(context).size.width;
 
-         
+        //  if(fact == true){
+        //    updatesScrollData();
+        //  }
     return  Scaffold(
         body: Stack(
                   children:[ Container(
@@ -81,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),]
                                 )),),),
                             ),
-                            Text("#medicine1", 
+                            Text("medicine1", 
                             style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -141,7 +188,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    Text("shedule", 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                                            Text("shedule", 
                     style: GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -152,6 +202,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),]
                                       )),
                     ),
+                    GestureDetector(
+                      onTap: (){
+                        updatesScrollData();
+                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
+                      },
+                      child: customButton('show', 30, 70, 14))
+
+
+
+                      ],
+
+                    ),
+
+
                     Container(
                       //container for list view
                       child: Expanded(//expanded list view
@@ -204,3 +271,5 @@ class _HomeScreenState extends State<HomeScreen> {
             );
   }
 }
+
+
