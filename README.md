@@ -1,9 +1,9 @@
-# take it
+# TAKE IT
 
 A alarm application that going to be very usefull for peoples which are aged or differently abled <br>
 through this application you can set alarm for your medication
 set alarm take a picture of that medicine (if the patient cant read, or memmory issue) <br>
-then just save the alarm. thats enough!!!
+then just save the alarm. thats enough!!!<br>
 
 ## user features
 
@@ -11,12 +11,12 @@ then just save the alarm. thats enough!!!
 2.set alarm
 
 
-#watch video
+## watch video
 
-#download file
+### >youtube 
+  watch [click Here](https://youtu.be/t7rVFOOVxVI)
 
-#for android
+## Download application
 
-#for ios
-
-
+### >for android
+  download(Version 0.0.1)   [click Here](https://drive.google.com/drive/u/0/folders/1eTUHeLXoTtyBLI2bBferJ7gIAcmfcSc1)
